@@ -56,6 +56,46 @@ namespace Exam_System
 
     }
 
+    public class FinalExam : Exam
+    {
+        public FinalExam(string timeOfExam) : base(timeOfExam) 
+        {
+
+        }
+
+        public override void ShowExam() 
+        {
+            Console.WriteLine("\t[[Final Exam]]\n");
+            foreach (var question in GetQuestions() )
+            {
+                if (question is not null)
+                {
+                    Console.WriteLine(question);
+                    foreach(var answer in question.Answers)
+                    {
+                        if(answer is not null)
+                        {
+                            Console.WriteLine(answer);
+                        }
+                    }
+                }
+            }
+        }
+
+        private int CalculateGrade() 
+        {
+            int totalGrade = 0;
+            foreach (var question in GetQuestions()) 
+            {
+                if (question is not null)
+                {
+                    totalGrade += question.Mark;
+                }
+            }
+            return totalGrade;
+        }
+    }
+
     public class PracticalExam : Exam
     {
         public PracticalExam(string timeOfExam) : base(timeOfExam) { }
