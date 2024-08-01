@@ -32,7 +32,7 @@ namespace Exam_System
         //    throw new NotImplementedException();
         //}
 
-        public void AddQuestion(Question question)
+        public virtual void AddQuestion(Question question)
         {
             if(question == null) 
             {
@@ -51,7 +51,7 @@ namespace Exam_System
 
         public override string ToString()
         {
-            return $"Time Of Exam: {TimeOfExam}, Number Of Questions: {NumberOfQuestions}";
+            return $"\nTime Of Exam: {TimeOfExam}, Number Of Questions: {NumberOfQuestions}";
         }
 
     }
@@ -65,6 +65,7 @@ namespace Exam_System
 
         public override void ShowExam() 
         {
+            Console.WriteLine("**************************************");
             Console.WriteLine("\t[[Final Exam]]\n");
             foreach (var question in GetQuestions() )
             {
@@ -80,6 +81,7 @@ namespace Exam_System
                     }
                 }
             }
+            Console.WriteLine($"\nTotal Grade: {CalculateGrade()}");
         }
 
         private int CalculateGrade() 
@@ -100,9 +102,19 @@ namespace Exam_System
     {
         public PracticalExam(string timeOfExam) : base(timeOfExam) { }
 
+        public override void AddQuestion(Question question)
+        {
+            if(question is TrueFalse)
+            {
+                throw new Exception("T/F questions are not allowed in Practical exam!\n");
+            }
+            base.AddQuestion(question);
+        }
+
         public override void ShowExam() 
         {
             Console.WriteLine("\n");
+            Console.WriteLine("**************************************");
             Console.WriteLine("\t[[Practical Exam]]");
             foreach (var question in GetQuestions()) 
             {

@@ -27,7 +27,7 @@ namespace Exam_System
 
         public override string ToString()
         {
-            return $"\nSubjec ID : {SubjectId}, Subject{SubjectName}";
+            return $"\nSubject ID : {SubjectId}, Subject{SubjectName}";
         }
     }
 }

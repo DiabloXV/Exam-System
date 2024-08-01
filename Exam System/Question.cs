@@ -54,7 +54,7 @@ namespace Exam_System
 
         public override string ToString() 
         {
-            return $"<<\n{Header}   :   {Body}\n>>";
+            return $"\n<< {Header}   :   {Body} >>\n";
         }
 
     }
